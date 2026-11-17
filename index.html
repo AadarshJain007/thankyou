@@ -206,6 +206,60 @@ h2 {
   user-select: none;
 }
 
+/* Polaroid Photo / Doodle Card */
+.polaroid-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto 16px;
+  transform: rotate(-2deg);
+  transition: transform 0.25s ease;
+  user-select: none;
+}
+
+.polaroid-wrap:active {
+  transform: scale(0.97) rotate(0deg);
+}
+
+.washi-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+  width: 72px;
+  height: 20px;
+  background: var(--yellow);
+  opacity: 0.85;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  z-index: 2;
+  border-radius: 2px;
+}
+
+.polaroid-frame {
+  background: #fbfaf8;
+  border: 3.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 10px 10px 12px;
+  box-shadow: 0 4px 14px rgba(74, 68, 66, 0.12);
+  display: inline-block;
+}
+
+.polaroid-img {
+  width: min(190px, 56vw);
+  height: min(190px, 56vw);
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid var(--ink);
+  display: block;
+  transition: opacity 0.25s ease;
+}
+
+.polaroid-cap {
+  margin-top: 8px;
+  font-size: 1.25rem;
+  color: var(--ink);
+  font-family: 'augiepixel', monospace;
+}
+
 .two {
   display: flex;
   flex-direction: column;
@@ -372,6 +426,15 @@ h2 {
 
 <!-- SECTION 1: COVER -->
 <section class="sc">
+  <div class="polaroid-wrap tap" id="sir-photo-card" title="tap to toggle doodle style">
+    <div class="washi-tape"></div>
+    <div class="polaroid-frame">
+      <img id="sir-img" src="rahul-sir.jpg" alt="Rahul Dudi Sir" class="polaroid-img" />
+      <p class="polaroid-cap">rahul dudi sir 🐐</p>
+    </div>
+    <span class="note" style="margin-top:6px; font-size:1.05rem;" id="note-photo">tap for doodle sketch</span>
+  </div>
+
   <h1>thank you, rahul sir.</h1>
   <p class="say">a thank you to Rahul Dudi Sir.</p>
   <p class="by">from aadarsh jain</p>
@@ -628,6 +691,28 @@ h2 {
     clearTimeout(tm);
     tm = setTimeout(function(){ t.classList.remove('on'); }, 2600);
   }
+
+  var isDoodle = false;
+  var sirImg = $('#sir-img');
+  var photoCard = $('#sir-photo-card');
+  var notePhoto = $('#note-photo');
+
+  function togglePhotoDoodle() {
+    playTap();
+    isDoodle = !isDoodle;
+    if (sirImg) {
+      sirImg.style.opacity = '0';
+      setTimeout(function(){
+        sirImg.src = isDoodle ? 'rahul-sir-doodle.png' : 'rahul-sir.jpg';
+        sirImg.style.opacity = '1';
+      }, 150);
+    }
+    if (notePhoto) {
+      notePhoto.textContent = isDoodle ? 'tap for real photo' : 'tap for doodle sketch';
+    }
+    say(isDoodle ? 'doodle mode on 🎨' : 'photo mode 📸');
+  }
+  if (photoCard) photoCard.onclick = togglePhotoDoodle;
 
   function tapMole() {
     playTap();
