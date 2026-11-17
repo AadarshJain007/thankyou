@@ -12,14 +12,18 @@
 }
 
 :root {
-  /* Warm muted soft paper tone - easy on the eyes, not harsh white */
+  /* Warm muted paper tone - soft and quiet, no harsh bright white */
   --paper: #ede9e3;
   --ink: #4a4442;
   --soft: #8a817c;
   --pink: #e08a8a;
+  --pink-soft: rgba(224, 138, 138, 0.12);
   --blue: #8aa4d9;
+  --blue-soft: rgba(138, 164, 217, 0.18);
   --green: #92d38c;
+  --green-soft: rgba(146, 211, 140, 0.18);
   --yellow: #e6cf6e;
+  --yellow-soft: rgba(230, 207, 110, 0.22);
   box-sizing: border-box;
 }
 
@@ -64,7 +68,7 @@ h1, h2, p {
   z-index: 10;
 }
 
-/* Sparse, soft, quiet centered column with lots of empty space */
+/* Sparse, soft, quiet centered column */
 .sc {
   min-height: 100svh;
   display: flex;
@@ -77,16 +81,16 @@ h1, h2, p {
 }
 
 .sc > * {
-  max-width: 520px;
+  max-width: 540px;
   width: 100%;
 }
 
-/* Inline Doodles: thick outlines (~5px), round caps, flat fills, wobbly edges */
+/* Inline Doodles: thick outlines (~5px), round caps, flat pastel fills */
 svg.art {
   width: min(290px, 78vw);
   height: auto;
   overflow: visible;
-  margin: 0 auto 24px;
+  margin: 0 auto 20px;
   display: block;
 }
 
@@ -118,13 +122,13 @@ svg.art {
 }
 
 h1 {
-  font-size: clamp(3rem, 13vw, 5.2rem);
+  font-size: clamp(3rem, 13vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.5px;
 }
 
 h2 {
-  font-size: clamp(2.3rem, 9vw, 3.6rem);
+  font-size: clamp(2.2rem, 8.5vw, 3.4rem);
   line-height: 1.05;
   margin-top: 6px;
 }
@@ -134,7 +138,7 @@ h2 {
 }
 
 .by {
-  margin-top: 16px;
+  margin-top: 14px;
   color: var(--pink);
   font-size: 1.35rem;
   transform: rotate(-3deg);
@@ -142,7 +146,7 @@ h2 {
 }
 
 .small {
-  margin-top: 18px;
+  margin-top: 16px;
   color: var(--soft);
   font-size: 1.15rem;
 }
@@ -156,15 +160,44 @@ h2 {
 }
 
 .say {
-  margin-top: 18px;
-  font-size: clamp(1.4rem, 4.6vw, 1.8rem);
+  margin-top: 16px;
+  font-size: clamp(1.35rem, 4.4vw, 1.7rem);
   line-height: 1.35;
+}
+
+/* Handwritten scribble quote boxes with dashed pink line */
+.quote {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-left: 3px dashed var(--pink);
+  background: var(--pink-soft);
+  border-radius: 4px;
+  font-size: clamp(1.15rem, 3.8vw, 1.35rem);
+  line-height: 1.35;
+  text-align: left;
+  color: var(--ink);
+}
+
+/* Notebook stats row */
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 22px;
+  padding: 8px 4px;
+  border-top: 2px dashed var(--soft);
+  border-bottom: 2px dashed var(--soft);
+  font-size: 1.15rem;
+  color: var(--soft);
+}
+
+.stats-row span {
+  color: var(--pink);
 }
 
 /* Wavy pink underline and tilted handwritten notes */
 .note {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 18px;
   color: var(--pink);
   font-size: 1.25rem;
   transform: rotate(-3deg);
@@ -176,7 +209,7 @@ h2 {
 .two {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 52px;
 }
 
 .train {
@@ -202,7 +235,78 @@ h2 {
   transform: scale(0.97);
 }
 
-/* Quiet notebook toast at bottom - wraps properly on mobile */
+/* Interactive Sticky Notes (Rough copy confessions) */
+.sticky-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+@media (max-width: 440px) {
+  .sticky-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sticky-note {
+  background: var(--yellow-soft);
+  border: 1.5px solid rgba(74, 68, 66, 0.25);
+  padding: 12px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  transform: rotate(var(--rot, -1.5deg));
+  transition: transform 0.2s ease;
+}
+
+.sticky-note:nth-child(2) {
+  background: var(--blue-soft);
+  --rot: 2deg;
+}
+
+.sticky-note:nth-child(3) {
+  background: var(--green-soft);
+  --rot: -2deg;
+}
+
+.sticky-note:nth-child(4) {
+  background: var(--pink-soft);
+  --rot: 1.5deg;
+}
+
+.sticky-note:active {
+  transform: scale(0.97) rotate(0deg);
+}
+
+.sticky-note .label {
+  display: block;
+  font-size: 1.3rem;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.sticky-note .hidden-msg {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.35s ease;
+  font-size: 1.1rem;
+  margin-top: 6px;
+  border-top: 1px dashed rgba(74, 68, 66, 0.3);
+  padding-top: 6px;
+  color: var(--ink);
+}
+
+.sticky-note.open .hidden-msg {
+  max-height: 140px;
+  opacity: 1;
+}
+
+/* Toast at bottom - wraps text on mobile */
 #toast {
   position: fixed;
   left: 50%;
@@ -240,7 +344,7 @@ h2 {
 }
 
 .name {
-  margin-top: 26px;
+  margin-top: 24px;
   font-size: 1.7rem;
 }
 
@@ -272,6 +376,13 @@ h2 {
   <p class="say">a thank you to Rahul Dudi Sir.</p>
   <p class="by">from aadarsh jain</p>
   <p class="small">physical chemistry, arjuna jee 1.0. scroll. it’s short, i promise.</p>
+  
+  <div class="stats-row">
+    <div>syllabus <span>100%</span></div>
+    <div>backlogs <span>0</span></div>
+    <div>respect <span>∞</span></div>
+  </div>
+
   <p class="sound-note">🔊 (turn sound on)</p>
 </section>
 
@@ -289,7 +400,8 @@ h2 {
   </svg>
   <h2>mole concept</h2>
   <p class="say">the harshest phase of arjuna. and it was my fault. i wasn’t listening to you, sir.</p>
-  <span class="note">tap the mole</span>
+  <div class="quote">"sir, starting ke 2 hafte laga jee 10th jaisi hi hogi. pehli baar limiting reagent ne reality check diya tha."</div>
+  <span class="note" id="note-mole">tap the mole</span>
 </section>
 
 <!-- SECTION 3: ATOM & STATES OF MATTER -->
@@ -309,6 +421,7 @@ h2 {
       </svg>
       <h2>structure of atom</h2>
       <p class="say">full of formulas and new things in every class.</p>
+      <div class="quote">"psi, psi square, quantum numbers — you turned abstract imagination into crystal clear graphs."</div>
     </div>
     <div>
       <svg class="art draw" viewBox="0 0 260 90" aria-label="Doodle of solid, liquid and gas boxes">
@@ -329,6 +442,7 @@ h2 {
       </svg>
       <h2>states of matter</h2>
       <p class="say">this one was easy.</p>
+      <div class="quote">"pv = nrt to van der waals equation — smooth sailing."</div>
     </div>
   </div>
 </section>
@@ -348,6 +462,7 @@ h2 {
       </svg>
       <h2>thermodynamics</h2>
       <p class="say">the longest chapter. but it felt easy, because of you sir.</p>
+      <div class="quote">"everyone online said 'thermo will break you'. but because of you sir, it actually felt like solving a logical game."</div>
     </div>
     <div>
       <div class="train" id="trn">
@@ -370,6 +485,7 @@ h2 {
       </div>
       <h2>redox</h2>
       <p class="say">smooth like a train.</p>
+      <div class="quote">"n-factor, balancing, titration — smooth like a train on express tracks."</div>
     </div>
   </div>
 </section>
@@ -393,10 +509,42 @@ h2 {
   </svg>
   <h2>chemical and ionic equilibrium</h2>
   <p class="say">the last two brothers. 7 lectures that ended this year’s journey.</p>
+  <div class="quote">"ph of weak acid + common ion effect... pehle darr lagta tha, ab options dekhte hi logic lagta hai."</div>
   <span class="note" id="note-bro">tap the brothers</span>
 </section>
 
-<!-- SECTION 6: GRAND FINALE THANK YOU -->
+<!-- SECTION 6: ROUGH COPY CONFESSIONS (STICKY NOTES) -->
+<section class="sc">
+  <h2>rough copy confessions</h2>
+  <p class="say">things i never wrote in the live doubt chat:</p>
+  
+  <div class="sticky-grid">
+    <div class="sticky-note">
+      <span class="label">☕ 2:15 am chai</span>
+      <span>re-watching thermodynamics lecture 7 with hot tea...</span>
+      <div class="hidden-msg">that derivation finally clicked when you paused and said "bina pen chalaye nahi aayega". picked up the pen immediately.</div>
+    </div>
+    <div class="sticky-note">
+      <span class="label">📝 the dpp panic</span>
+      <span>minor test 3 me jab marks gire the...</span>
+      <div class="hidden-msg">aapki ek baat yaad aayi: "marks se mat daro, galtiyan likho". notebook banayi, and everything shifted.</div>
+    </div>
+    <div class="sticky-note">
+      <span class="label">⚡ 1.25x speed</span>
+      <span>hamesha 1.5x pe dekhne ki aadat thi...</span>
+      <div class="hidden-msg">par ionic equilibrium ke 7 lectures 1.0x normal speed pe dekhe, line by line. worth every single second.</div>
+    </div>
+    <div class="sticky-note">
+      <span class="label">🎯 the 12th wish</span>
+      <span>ab bas ek hi prayer hai...</span>
+      <div class="hidden-msg">ki lakshya 12th batch me bhi physical chemistry aap hi padhana sir! please!</div>
+    </div>
+  </div>
+
+  <span class="small" style="margin-top:14px; display:inline-block;">(tap any note to unfold the scribbles)</span>
+</section>
+
+<!-- SECTION 7: GRAND FINALE THANK YOU -->
 <section class="sc">
   <svg class="art draw tap" id="hrt" viewBox="0 0 200 160" aria-label="A doodle heart">
     <g filter="url(#wob)">
@@ -405,7 +553,8 @@ h2 {
   </svg>
   <h2>thank you, sir.</h2>
   <p class="say">by the end, physical chemistry became the easiest subject for me. smooth like butter.</p>
-  <p class="say">i hope you take our physical chemistry in lakshya too.</p>
+  <p class="say" style="margin-top: 10px;">we walked in scared of formulas. we are walking out loving the logic.</p>
+  <p class="say" style="margin-top: 10px; color: var(--pink);">i hope you take our physical chemistry in lakshya too.</p>
   <p class="name pink">aadarsh jain</p>
   <p class="small">tap the heart</p>
 </section>
@@ -467,7 +616,7 @@ h2 {
   addEventListener('scroll', prog, { passive: true });
   prog();
 
-  // Subtle notebook toast
+  // Subtle notebook toast with line-wrapping
   var tm, t = $('#toast');
   function say(x) {
     t.textContent = x;
@@ -482,6 +631,8 @@ h2 {
   }
   var moleEl = $('#mole');
   if (moleEl) moleEl.onclick = tapMole;
+  var noteMole = $('#note-mole');
+  if (noteMole) noteMole.onclick = tapMole;
 
   var atomEl = $('#atom');
   if (atomEl) {
@@ -507,6 +658,15 @@ h2 {
   if (broEl) broEl.onclick = tapBro;
   var noteBro = $('#note-bro');
   if (noteBro) noteBro.onclick = tapBro;
+
+  // Interactive Sticky Notes
+  document.querySelectorAll('.sticky-note').forEach(function(note){
+    note.onclick = function(){
+      playTap();
+      this.classList.toggle('open');
+      say(this.classList.contains('open') ? 'opened scribble 📖' : 'folded back');
+    };
+  });
 
   $('#hrt').onclick = function(e){
     playTap();
