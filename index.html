@@ -202,23 +202,27 @@ h2 {
   transform: scale(0.97);
 }
 
-/* Quiet notebook toast at bottom */
+/* Quiet notebook toast at bottom - wraps properly on mobile */
 #toast {
   position: fixed;
   left: 50%;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  transform: translate(-50%, 30px);
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 20px);
   background: var(--ink);
   color: var(--paper);
-  padding: 8px 18px;
-  border-radius: 4px;
+  padding: 10px 18px;
+  border-radius: 6px;
   font-size: 1.15rem;
+  line-height: 1.35;
   opacity: 0;
   pointer-events: none;
   transition: transform 0.25s ease, opacity 0.25s ease;
-  z-index: 20;
-  max-width: 90%;
-  white-space: nowrap;
+  z-index: 30;
+  width: max-content;
+  max-width: min(440px, 90vw);
+  white-space: normal;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 #toast.on {
@@ -388,8 +392,8 @@ h2 {
     </g>
   </svg>
   <h2>chemical and ionic equilibrium</h2>
-  <p class="say">the last two brothers. they ended this year’s journey.</p>
-  <span class="note">tap the brothers</span>
+  <p class="say">the last two brothers. 7 lectures that ended this year’s journey.</p>
+  <span class="note" id="note-bro">tap the brothers</span>
 </section>
 
 <!-- SECTION 6: GRAND FINALE THANK YOU -->
@@ -472,10 +476,12 @@ h2 {
     tm = setTimeout(function(){ t.classList.remove('on'); }, 2600);
   }
 
-  $('#mole').onclick = function(){
+  function tapMole() {
     playTap();
     say('i wasn’t listening here. my bad, sir.');
-  };
+  }
+  var moleEl = $('#mole');
+  if (moleEl) moleEl.onclick = tapMole;
 
   var atomEl = $('#atom');
   if (atomEl) {
@@ -493,10 +499,14 @@ h2 {
     };
   }
 
-  $('#bro').onclick = function(){
+  function tapBro() {
     playTap();
-    say('the last two. they ended the journey.');
-  };
+    say('the last two brothers. 7 lectures that ended the journey.');
+  }
+  var broEl = $('#bro');
+  if (broEl) broEl.onclick = tapBro;
+  var noteBro = $('#note-bro');
+  if (noteBro) noteBro.onclick = tapBro;
 
   $('#hrt').onclick = function(e){
     playTap();
