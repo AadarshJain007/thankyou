@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+  <title>thank you, rahul sir — a letter from class 11</title>
+  
+  <!-- Handwritten Fonts (Google Fonts with robust system fallbacks) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       NOTEBOOK PALETTE & ROOTS
+       ========================================================= */
+    :root {
+      --paper: #fbf9f5;
+      --paper-grid: rgba(215, 204, 190, 0.45);
+      --margin-line: rgba(239, 68, 68, 0.4);
+      --card: #ffffff;
+      --ink: #2c2523;
+      --ink-soft: #6e6561;
+      --pink: #e06d6d;
+      --pink-soft: #fde8e8;
+      --yellow-hl: rgba(254, 240, 138, 0.85);
+      --blue-hl: rgba(186, 230, 253, 0.7);
+      --green-hl: rgba(187, 247, 208, 0.7);
+      --tape: rgba(250, 240, 200, 0.75);
+      --shadow-paper: 0 4px 18px rgba(44, 37, 35, 0.08), 0 1px 3px rgba(44, 37, 35, 0.04);
+      --font-hand: 'Caveat', 'Kalam', 'Patrick Hand', 'Comic Sans MS', cursive;
+      --font-casual: 'Patrick Hand', 'Caveat', cursive, sans-serif;
+      --font-body: 'Kalam', 'Caveat', cursive, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --paper: #1c1a19;
+      --paper-grid: rgba(65, 58, 54, 0.5);
+      --margin-line: rgba(248, 113, 113, 0.3);
+      --card: #252220;
+      --ink: #f3ede8;
+      --ink-soft: #a89e97;
+      --pink: #f28b82;
+      --pink-soft: #3c2424;
+      --yellow-hl: rgba(161, 130, 40, 0.45);
+      --blue-hl: rgba(30, 64, 100, 0.45);
+      --green-hl: rgba(34, 84, 52, 0.45);
+      --tape: rgba(70, 65, 55, 0.6);
+      --shadow-paper: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      text-align: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      /* Authentic notebook grid background */
+      background-image: 
+        linear-gradient(to right, var(--paper-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--paper-grid) 1px, transparent 1px);
+      background-size: 26px 26px;
+      position: relative;
+    }
+
+    /* Red left margin line of notebook */
+    body::before {
+      content: '';
+      position: fixed;
+      left: clamp(14px, 4vw, 36px);
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--margin-line);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Top Reading Progress Bar */
+    #prog-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 5px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pink), #f59e0b);
+      z-index: 100;
+      border-radius: 0 4px 4px 0;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Floating Header Controls */
+    .floating-bar {
+      position: fixed;
+      top: calc(10px + env(safe-area-inset-top, 0px));
+      right: clamp(12px, 3vw, 24px);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: var(--card);
+      border: 1.5px solid var(--ink-soft);
+      color: var(--ink);
+      font-family: var(--font-hand);
+      font-size: 1.15rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      transition: transform 0.15s ease, background 0.2s ease;
+      user-select: none;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.94);
+    }
+
+    /* Main Sections (Mobile Friendly & Snap) */
+    .sc {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(60px, 10vh, 90px) clamp(18px, 5vw, 32px) clamp(50px, 8vh, 70px);
+      scroll-snap-align: start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sc > * {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    /* Notebook Card Sheet */
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: clamp(24px, 5vw, 36px) clamp(18px, 4vw, 28px);
+      box-shadow: var(--shadow-paper);
+      border: 1.5px dashed var(--paper-grid);
+      position: relative;
+      transition: transform 0.25s ease;
+    }
+
+    /* Paper Tape on top of card */
+    .tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 90px;
+      height: 24px;
+      background: var(--tape);
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
+
+    /* Typography & Handwritten Feel */
+    h1 {
+      font-family: var(--font-hand);
+      font-size: clamp(3rem, 13vw, 5.2rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: var(--font-hand);
+      font-size: clamp(2.3rem, 8.5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-top: 12px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-family: var(--font-hand);
+      font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+      color: var(--pink);
+      line-height: 1.2;
+      margin-top: 6px;
+    }
+
+    .author-tag {
+      font-family: var(--font-hand);
+      font-size: clamp(1.3rem, 4.5vw, 1.7rem);
+      color: var(--ink-soft);
+      margin-top: 10px;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+    }
+
+    .batch-pill {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 14px;
+      background: var(--yellow-hl);
+      border-radius: 12px;
+      color: #3b2a05;
+      font-family: var(--font-casual);
+      font-size: 1.05rem;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    [data-theme="dark"] .batch-pill {
+      color: #fef08a;
+    }
+
+    .say {
+      font-size: clamp(1.25rem, 4.2vw, 1.55rem);
+      line-height: 1.4;
+      color: var(--ink);
+      margin-top: 14px;
+    }
+
+    .quote-box {
+      margin-top: 16px;
+      padding: 10px 14px;
+      background: var(--paper);
+      border-left: 4px solid var(--pink);
+      border-radius: 6px;
+      font-size: clamp(1.1rem, 3.8vw, 1.3rem);
+      color: var(--ink-soft);
+      font-style: italic;
+      text-align: left;
+    }
+
+    .note-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      color: var(--pink);
+      font-family: var(--font-hand);
+      font-size: 1.25rem;
+      border-bottom: 2px dashed var(--pink);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease;
+    }
+
+    .note-hint:active {
+      transform: scale(0.95);
+    }
+
+    /* SVG Art & Hand Drawn Aesthetics */
+    svg.art {
+      width: min(280px, 75vw);
+      height: auto;
+      max-height: 170px;
+      overflow: visible;
+      margin: 8px auto 14px;
+      display: block;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .art * {
+      stroke: var(--ink);
+      stroke-width: 4.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .tap-target {
+      cursor: pointer;
+    }
+
+    .tap-target:active {
+      transform: scale(0.93) rotate(-2deg);
+    }
+
+    /* Wobble stroke animation */
+    .draw {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .draw.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .draw.in * {
+      stroke-dasharray: 1;
+      animation: drawLine 1s ease-out forwards;
+    }
+
+    @keyframes drawLine {
+      from { stroke-dashoffset: 1; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Chapter Split Layout (for 2 chapters in 1 screen on tablets/foldables) */
+    .split-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* Train rolling animation */
+    .train-container {
+      width: 100%;
+      overflow: hidden;
+      padding: 6px 0;
+    }
+
+    .train-track {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .train-track.in svg {
+      animation: trainRoll 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    @keyframes trainRoll {
+      from { transform: translateX(-120vw); }
+      to { transform: translateX(0); }
+    }
+
+    /* Interactive Sticky Notes / Confessions */
+    .sticky-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 420px) {
+      .sticky-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sticky-note {
+      background: var(--yellow-hl);
+      color: #382c06;
+      padding: 14px 12px;
+      border-radius: 4px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      font-size: 1.15rem;
+      line-height: 1.3;
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      transform: rotate(var(--rot, -1deg));
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      user-select: none;
+    }
+
+    .sticky-note:nth-child(2) {
+      background: var(--blue-hl);
+      color: #0c3353;
+      --rot: 1.8deg;
+    }
+
+    .sticky-note:nth-child(3) {
+      background: var(--green-hl);
+      color: #0d3e1d;
+      --rot: -2deg;
+    }
+
+    .sticky-note:nth-child(4) {
+      background: var(--pink-soft);
+      color: #5c1818;
+      --rot: 1.2deg;
+    }
+
+    .sticky-note:active {
+      transform: scale(0.96) rotate(0deg);
+    }
+
+    .sticky-note .label {
+      font-weight: 700;
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+
+    .sticky-note .hidden-msg {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      font-size: 1.05rem;
+      margin-top: 6px;
+      border-top: 1px dashed rgba(0,0,0,0.2);
+      padding-top: 6px;
+    }
+
+    .sticky-note.open .hidden-msg {
+      max-height: 120px;
+      opacity: 1;
+    }
+
+    /* Desk Stats Widget */
+    .desk-stats {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 18px;
+      padding: 12px 6px;
+      background: var(--paper);
+      border-radius: 12px;
+      border: 1px dashed var(--paper-grid);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-hand);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--pink);
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+
+    /* Floating Toast */
+    #toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      transform: translate(-50%, 50px);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-family: var(--font-hand);
+      font-size: 1.3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
+      z-index: 200;
+      max-width: 90%;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      border: 1.5px solid var(--pink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #toast.on {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* Confetti Particle Sparkles */
+    .spk {
+      position: fixed;
+      z-index: 150;
+      pointer-events: none;
+      font-family: var(--font-hand);
+      font-size: 1.6rem;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    /* Quick Customizer Drawer */
+    #custom-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 300;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    #custom-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--card);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px 24px 0 0;
+      padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.2);
+      transform: translateY(100%);
+      transition: transform 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+      text-align: left;
+    }
+
+    #custom-modal.open .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-box h3 {
+      font-family: var(--font-hand);
+      font-size: 2rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--paper-grid);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      background: var(--paper);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--pink);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-save {
+      flex: 1;
+      background: var(--pink);
+      color: #fff;
+      border: 0;
+      padding: 12px;
+      border-radius: 12px;
+      font-family: var(--font-hand);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .btn-close {
+      background: none;
+      border: 1px solid var(--paper-grid);
+      color: var(--ink);
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-family: var(--font-hand);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* Scroll Prompt Arrow */
+    .scroll-arrow {
+      margin-top: 20px;
+      color: var(--pink);
+      animation: bounce 1.8s infinite;
+      font-size: 1.8rem;
+      display: inline-block;
+      user-select: none;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(8px); }
+      60% { transform: translateY(4px); }
+    }
+
+    /* Screen Reader Only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+      .draw { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hidden SVG displacement filter for hand-drawn wobble effect -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="hand-wob">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/>
+      <feDisplacementMap in="SourceGraphic" scale="3.2"/>
+    </filter>
+  </svg>
+
+  <!-- Reading progress bar -->
+  <div id="prog-bar"></div>
+
+  <!-- Floating top bar (Night toggle, sound toggle, customizer) -->
+  <div class="floating-bar">
+    <button id="btn-sound" class="icon-btn" type="button" title="Toggle audio feedback" aria-label="Toggle sound">
+      <span id="sound-icon">🔇</span>
+    </button>
+    <button id="btn-edit" class="icon-btn" type="button" title="Customize Names" aria-label="Customize details">
+      ✏️ <span style="font-size:0.95rem">edit</span>
+    </button>
+    <button id="btn-theme" class="icon-btn" type="button" title="Toggle 2 AM Night Mode" aria-label="Toggle dark mode">
+      🌙 <span id="theme-text">night</span>
+    </button>
+  </div>
+
+  <!-- SECTION 1: COVER -->
+  <section class="sc">
+    <div class="card">
+      <div class="tape"></div>
+      <h1>thank you, rahul sir.</h1>
+      <p class="subtitle">a letter from the back of my physical chemistry register.</p>
+      <div class="author-tag">from <span class="student-name-dyn">aadarsh jain</span></div>
+      <div>
+        <span class="batch-pill"><span class="subject-dyn">physical chemistry</span>, <span class="batch-dyn">arjuna jee 1.0</span></span>
+      </div>
+      <p class="say" style="margin-top: 18px; color: var(--ink-soft); font-size: 1.25rem;">
+        class 11 is wrapping up. before 12th begins, i wanted to write this down. scroll slowly — it’s straight from the heart.
+      </p>
+
+      <div class="desk-stats">
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Syllabus Done</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">0</div>
+          <div class="stat-lbl">Active Backlog</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-lbl">Respect</div>
+        </div>
+      </div>
+
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: MOLE CONCEPT -->
+  <section class="sc">
+    <div class="card">
+      <div class="tape"></div>
+      
+      <!-- Stressed Mole Doodle -->
+      <svg class="art draw tap-target" id="mole-art" viewBox="0 0 200 160" role="img" aria-label="Doodle of a stressed mole doing stoichiometry">
+        <g filter="url(#hand-wob)">
+          <!-- Eyebrows / stress sweat -->
+          <path d="M52 32 l12 -18 l12 18 l12 -18 l12 18" stroke="var(--pink)" fill="none"/>
+          <!-- Mole body -->
+          <ellipse cx="100" cy="98" rx="64" ry="46" fill="#b99a8a"/>
+          <!-- Snout & Blushing cheeks -->
+          <circle cx="48" cy="96" r="9" fill="var(--pink)"/>
+          <ellipse cx="64" cy="96" rx="14" ry="10" fill="#9e7e6e"/>
+          <!-- Little spectacles -->
+          <circle cx="78" cy="80" r="11" fill="none"/>
+          <circle cx="106" cy="78" r="11" fill="none"/>
+          <path d="M89 80 L95 79" fill="none"/>
+          <circle cx="78" cy="80" r="3" fill="var(--ink)"/>
+          <circle cx="106" cy="78" r="3" fill="var(--ink)"/>
+          <!-- Little paws holding formula paper -->
+          <path d="M66 136 l-6 16 M86 142 l-3 16 M108 142 l2 16" fill="none"/>
+          <rect x="110" y="90" width="38" height="48" rx="3" fill="var(--paper)" stroke-width="2.5"/>
+          <path d="M116 102 h24 M116 112 h18 M116 122 h22" stroke="var(--ink-soft)" stroke-width="2"/>
+        </g>
+      </svg>
+
+      <h2>mole concept</h2>
+      <p class="say">the harshest phase of arjuna. and it was completely my fault. i wasn’t listening to you in the beginning, sir.</p>
+      
+      <div class="quote-box">
+        "Sir, starting ke 2 hafte laga JEE 10th jaisi hi hogi. Pehli baar limiting reagent ne aukat dikha di thi."
+      </div>
+
+      <span class="note-hint" id="hint-mole">👉 tap the mole</span>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ATOM & STATES OF MATTER -->
+  <section class="sc">
+    <div class="split-col">
+      <!-- Card: Structure of Atom -->
+      <div class="card">
+        <div class="tape"></div>
+        <svg class="art draw tap-target" id="atom-art" viewBox="0 0 180 160" role="img" aria-label="Doodle of atomic orbits">
+          <g filter="url(#hand-wob)" fill="none">
+            <!-- Orbital ellipses -->
+            <ellipse cx="90" cy="80" rx="68" ry="24" stroke="var(--ink)"/>
+            <ellipse cx="90" cy="80" rx="68" ry="24" transform="rotate(60 90 80)" stroke="var(--ink)"/>
+            <ellipse cx="90" cy="80" rx="68" ry="24" transform="rotate(120 90 80)" stroke="var(--ink)"/>
+            <!-- Nucleus -->
+            <circle cx="90" cy="80" r="13" fill="var(--pink)"/>
+            <!-- Electrons -->
+            <circle cx="158" cy="80" r="6" fill="#8aa4d9"/>
+            <circle cx="56" cy="22" r="6" fill="#8aa4d9"/>
+            <circle cx="56" cy="138" r="6" fill="#8aa4d9"/>
+          </g>
+        </svg>
+        <h2>structure of atom</h2>
+        <p class="say">full of formulas and new things in every class. psi, psi square, quantum numbers — you turned abstract imagination into crystal clear graphs.</p>
+        <span class="note-hint" id="hint-atom">👉 tap the nucleus</span>
+      </div>
+
+      <!-- Card: States of Matter -->
+      <div class="card">
+        <div class="tape"></div>
+        <svg class="art draw tap-target" id="states-art" viewBox="0 0 270 95" role="img" aria-label="Solid, liquid, and gas molecules">
+          <g filter="url(#hand-wob)" fill="none">
+            <!-- Solid box -->
+            <rect x="8" y="10" width="72" height="74" rx="5" fill="var(--paper)"/>
+            <!-- Liquid box -->
+            <rect x="98" y="10" width="72" height="74" rx="5" fill="var(--paper)"/>
+            <!-- Gas box -->
+            <rect x="188" y="10" width="72" height="74" rx="5" fill="var(--paper)"/>
+            <!-- Solid tight balls -->
+            <g fill="var(--ink)" style="stroke-width:1">
+              <circle cx="26" cy="30" r="4.5"/><circle cx="44" cy="30" r="4.5"/><circle cx="62" cy="30" r="4.5"/>
+              <circle cx="26" cy="48" r="4.5"/><circle cx="44" cy="48" r="4.5"/><circle cx="62" cy="48" r="4.5"/>
+              <circle cx="26" cy="66" r="4.5"/><circle cx="44" cy="66" r="4.5"/><circle cx="62" cy="66" r="4.5"/>
+              <!-- Liquid loose -->
+              <circle cx="112" cy="64" r="4.5"/><circle cx="130" cy="70" r="4.5"/><circle cx="148" cy="64" r="4.5"/>
+              <circle cx="120" cy="52" r="4.5"/><circle cx="140" cy="50" r="4.5"/>
+              <!-- Gas free -->
+              <circle cx="204" cy="26" r="4.5"/><circle cx="242" cy="42" r="4.5"/><circle cx="218" cy="68" r="4.5"/>
+              <circle cx="248" cy="24" r="4.5"/><circle cx="206" cy="52" r="4.5"/>
+            </g>
+          </g>
+        </svg>
+        <h2>states of matter</h2>
+        <p class="say">this one was easy. PV = nRT to van der Waals equation — smooth sailing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: THERMO & REDOX -->
+  <section class="sc">
+    <div class="split-col">
+      <!-- Card: Thermodynamics -->
+      <div class="card">
+        <div class="tape"></div>
+        <svg class="art draw tap-target" id="thermo-art" viewBox="0 0 170 190" role="img" aria-label="Flask over flame">
+          <g filter="url(#hand-wob)">
+            <!-- Glass Flask -->
+            <path d="M66 16 H104 V68 L142 136 Q148 152 132 152 H38 Q22 152 28 136 L66 68 Z" fill="var(--paper)"/>
+            <!-- Boiling liquid -->
+            <path d="M44 116 L126 116 L138 140 Q142 146 132 146 H38 Q28 146 32 140 Z" fill="var(--pink)"/>
+            <circle cx="74" cy="100" r="5" fill="none"/>
+            <circle cx="98" cy="90" r="4" fill="none"/>
+            <circle cx="82" cy="130" r="3.5" fill="#fff" style="stroke-width:1"/>
+            <!-- Heat flame -->
+            <path d="M85 186 Q62 166 85 150 Q87 162 101 154 Q105 174 85 186 Z" fill="#e6cf6e"/>
+          </g>
+        </svg>
+        <h2>thermodynamics</h2>
+        <p class="say">the longest chapter. everyone online said "thermo will break you". but because of you sir, it actually felt like solving a logical game.</p>
+        <span class="note-hint" id="hint-thermo">👉 tap the boiling flask</span>
+      </div>
+
+      <!-- Card: Redox -->
+      <div class="card">
+        <div class="tape"></div>
+        <div class="train-container">
+          <div class="train-track" id="redox-track">
+            <svg class="art" viewBox="0 0 360 120" style="width:min(340px, 92vw)" role="img" aria-label="Train moving on rails">
+              <g filter="url(#hand-wob)">
+                <path d="M0 110 H360" fill="none"/>
+                <!-- Bogies -->
+                <rect x="10" y="48" width="80" height="50" rx="4" fill="#92d38c"/>
+                <rect x="100" y="48" width="80" height="50" rx="4" fill="#e6cf6e"/>
+                <rect x="190" y="34" width="110" height="64" rx="5" fill="var(--pink)"/>
+                <!-- Engine chimney & puff -->
+                <rect x="204" y="14" width="16" height="22" fill="#8aa4d9"/>
+                <circle cx="212" cy="6" r="5" fill="none"/>
+                <!-- Wheels -->
+                <circle cx="40" cy="100" r="11" fill="var(--card)"/>
+                <circle cx="70" cy="100" r="11" fill="var(--card)"/>
+                <circle cx="130" cy="100" r="11" fill="var(--card)"/>
+                <circle cx="160" cy="100" r="11" fill="var(--card)"/>
+                <circle cx="222" cy="100" r="11" fill="var(--card)"/>
+                <circle cx="272" cy="100" r="11" fill="var(--card)"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <h2>redox</h2>
+        <p class="say">n-factor, balancing, titration. smooth like a train on express tracks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CHEMICAL & IONIC EQUILIBRIUM -->
+  <section class="sc">
+    <div class="card">
+      <div class="tape"></div>
+      
+      <!-- Equilibrium Brothers Doodle -->
+      <svg class="art draw tap-target" id="bro-art" viewBox="0 0 270 160" role="img" aria-label="Two brothers holding hands under reversible reaction arrows">
+        <g filter="url(#hand-wob)">
+          <!-- Reversible reaction arrows -->
+          <path d="M90 18 H180 M170 10 L180 18 L170 26" fill="none" stroke="var(--pink)"/>
+          <path d="M180 40 H90 M100 32 L90 40 L100 48" fill="none" stroke="var(--pink)"/>
+          <!-- Legs -->
+          <path d="M80 126 V152 M84 126 V152 M184 126 V152 M188 126 V152" fill="none"/>
+          <!-- Handshake / arm link -->
+          <path d="M104 84 L164 84" fill="none" stroke-width="5"/>
+          <!-- Chemical brother -->
+          <rect x="66" y="68" width="34" height="58" rx="4" fill="#8aa4d9"/>
+          <circle cx="83" cy="50" r="18" fill="var(--card)"/>
+          <circle cx="77" cy="48" r="2.8" fill="var(--ink)" style="stroke-width:1"/>
+          <circle cx="89" cy="48" r="2.8" fill="var(--ink)" style="stroke-width:1"/>
+          <path d="M78 57 Q83 62 88 57" fill="none" stroke-width="2.5"/>
+          <!-- Ionic brother -->
+          <rect x="170" y="68" width="34" height="58" rx="4" fill="#92d38c"/>
+          <circle cx="187" cy="50" r="18" fill="var(--card)"/>
+          <circle cx="181" cy="48" r="2.8" fill="var(--ink)" style="stroke-width:1"/>
+          <circle cx="193" cy="48" r="2.8" fill="var(--ink)" style="stroke-width:1"/>
+          <path d="M182 57 Q187 62 192 57" fill="none" stroke-width="2.5"/>
+        </g>
+      </svg>
+
+      <h2>chemical & ionic equilibrium</h2>
+      <p class="say">the last two brothers. the chapters that intimidate every single 11th grader. they ended this year’s physical chemistry journey with confidence.</p>
+      
+      <div class="quote-box">
+        "pH of weak acid + common ion effect... pehle darr lagta tha, ab options dekhte hi logic lagta hai."
+      </div>
+
+      <span class="note-hint" id="hint-bro">👉 tap the brothers</span>
+    </div>
+  </section>
+
+  <!-- SECTION 6: UNTOLD CONFESSIONS (STICKY NOTES) -->
+  <section class="sc">
+    <div class="card">
+      <div class="tape"></div>
+      <h2>rough copy confessions</h2>
+      <p class="say" style="margin-bottom: 8px;">things i never wrote in the live doubt chat:</p>
+      
+      <div class="sticky-grid">
+        <div class="sticky-note" data-note="chai">
+          <span class="label">☕ 2:15 AM chai</span>
+          <span>re-watching thermodynamics lecture 7 with hot tea...</span>
+          <div class="hidden-msg">that derivation finally clicked when you paused and said "bina pen chalaye nahi aayega". picked up the pen immediately.</div>
+        </div>
+        <div class="sticky-note" data-note="dpp">
+          <span class="label">📝 the dpp panic</span>
+          <span>minor test 3 me jab marks gire the...</span>
+          <div class="hidden-msg">aapki ek baat yaad aayi: "marks se mat daro, galtiyan likho". notebook banayi, and everything shifted.</div>
+        </div>
+        <div class="sticky-note" data-note="speed">
+          <span class="label">⚡ 1.25x speed</span>
+          <span>hamesha 1.5x pe dekhne ki aadat thi...</span>
+          <div class="hidden-msg">par ionic equilibrium ke 8 lectures 1.0x normal speed pe dekhe, line by line. worth every single second.</div>
+        </div>
+        <div class="sticky-note" data-note="lakshya">
+          <span class="label">🎯 the 12th wish</span>
+          <span>ab bas ek hi prayer hai...</span>
+          <div class="hidden-msg">ki Lakshya 12th batch me bhi physical chemistry aap hi padhana sir! please!</div>
+        </div>
+      </div>
+
+      <p class="say" style="font-size:1.15rem; color:var(--ink-soft); margin-top:14px;">(tap any sticky note to unfold the scribbles)</p>
+    </div>
+  </section>
+
+  <!-- SECTION 7: THE HEART & GRAND THANK YOU -->
+  <section class="sc">
+    <div class="card">
+      <div class="tape"></div>
+      
+      <!-- Big Beating Heart Doodle -->
+      <svg class="art draw tap-target" id="heart-art" viewBox="0 0 200 170" role="img" aria-label="A big red heart doodle">
+        <g filter="url(#hand-wob)">
+          <path d="M100 52 C100 20 54 20 54 56 C54 86 100 106 100 136 C100 106 146 86 146 56 C146 20 100 20 100 52 Z" fill="var(--pink)"/>
+          <path d="M72 44 Q80 34 90 38" stroke="#ffffff" stroke-width="3" fill="none"/>
+        </g>
+      </svg>
+
+      <h2>thank you, sir.</h2>
+      <p class="say">by the end of class 11, physical chemistry became my strongest and easiest subject. smooth like butter.</p>
+      
+      <p class="say" style="margin-top: 14px; font-weight: 600;">
+        we walked in scared of formulas. we are walking out loving the logic.
+      </p>
+
+      <p class="say" style="color: var(--pink); margin-top: 10px;">
+        i genuinely hope you take our physical chemistry in lakshya too.
+      </p>
+
+      <div class="author-tag" style="font-size: 2rem; color: var(--pink); margin-top: 24px;">
+        — <span class="student-name-dyn">aadarsh jain</span>
+      </div>
+
+      <div style="margin-top: 18px;">
+        <span class="note-hint" id="hint-heart">❤️ tap the heart for a burst</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Customization Drawer Modal -->
+  <div id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <h3 id="modal-title">
+        <span>✏️ customize details</span>
+        <button id="modal-x" type="button" class="btn-close" style="padding:4px 10px; border-radius:50%">✕</button>
+      </h3>
+      <div class="form-group">
+        <label for="inp-teacher">Teacher Name</label>
+        <input type="text" id="inp-teacher" class="form-input" value="Rahul Dudi Sir">
+      </div>
+      <div class="form-group">
+        <label for="inp-student">Your Name (Student)</label>
+        <input type="text" id="inp-student" class="form-input" value="aadarsh jain">
+      </div>
+      <div class="form-group">
+        <label for="inp-batch">Batch Name</label>
+        <input type="text" id="inp-batch" class="form-input" value="arjuna jee 1.0">
+      </div>
+      <div class="form-group">
+        <label for="inp-subject">Subject</label>
+        <input type="text" id="inp-subject" class="form-input" value="physical chemistry">
+      </div>
+      <div class="btn-row">
+        <button type="button" id="btn-save-cust" class="btn-save">Save & Update</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ==========================================
+      // STATE & PERSISTENCE
+      // ==========================================
+      var state = {
+        teacher: localStorage.getItem('ty_teacher') || 'Rahul Dudi Sir',
+        student: localStorage.getItem('ty_student') || 'aadarsh jain',
+        batch: localStorage.getItem('ty_batch') || 'arjuna jee 1.0',
+        subject: localStorage.getItem('ty_subject') || 'physical chemistry',
+        theme: localStorage.getItem('ty_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+        sound: localStorage.getItem('ty_sound') === 'true'
+      };
+
+      var root = document.documentElement;
+      var progBar = document.getElementById('prog-bar');
+      var toastEl = document.getElementById('toast');
+      var toastTimer;
+      var audioCtx = null;
+
+      function renderData() {
+        document.querySelectorAll('.teacher-name-dyn').forEach(function(el) { el.textContent = state.teacher; });
+        document.querySelectorAll('.student-name-dyn').forEach(function(el) { el.textContent = state.student; });
+        document.querySelectorAll('.batch-dyn').forEach(function(el) { el.textContent = state.batch; });
+        document.querySelectorAll('.subject-dyn').forEach(function(el) { el.textContent = state.subject; });
+      }
+
+      function applyTheme(t) {
+        state.theme = t;
+        root.setAttribute('data-theme', t);
+        localStorage.setItem('ty_theme', t);
+        var btnText = document.getElementById('theme-text');
+        if (btnText) btnText.textContent = t === 'dark' ? 'paper' : 'night';
+      }
+
+      function updateSoundBtn() {
+        var icon = document.getElementById('sound-icon');
+        if (icon) icon.textContent = state.sound ? '🔊' : '🔇';
+      }
+
+      // ==========================================
+      // SYNTHESIZED WEB AUDIO (Pure Offline, No files)
+      // ==========================================
+      function playPaperRustle() {
+        if (!state.sound) return;
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+          
+          var osc = audioCtx.createOscillator();
+          var gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.08);
+          
+          gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+          
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.09);
+        } catch(e) {}
+      }
+
+      function playChime() {
+        if (!state.sound) return;
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          var notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach(function(freq, idx) {
+            var osc = audioCtx.createOscillator();
+            var gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (idx * 0.05));
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime + (idx * 0.05));
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (idx * 0.05) + 0.35);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(audioCtx.currentTime + (idx * 0.05));
+            osc.stop(audioCtx.currentTime + (idx * 0.05) + 0.4);
+          });
+        } catch(e) {}
+      }
+
+      // ==========================================
+      // TOAST MESSAGES
+      // ==========================================
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('on');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function() {
+          toastEl.classList.remove('on');
+        }, 2800);
+      }
+
+      // ==========================================
+      // PARTICLES BURST
+      // ==========================================
+      function spawnBurst(x, y, symbols, count) {
+        playChime();
+        var chars = symbols || ['✨', '❤️', '⚛️', '★', '🔥', 'DPP✓'];
+        var num = count || 14;
+        for (var i = 0; i < num; i++) {
+          var el = document.createElement('span');
+          el.className = 'spk';
+          el.textContent = chars[i % chars.length];
+          el.style.left = (x || window.innerWidth / 2) + 'px';
+          el.style.top = (y || window.innerHeight / 2) + 'px';
+          document.body.appendChild(el);
+
+          var angle = (i / num) * 2 * Math.PI + (Math.random() * 0.4);
+          var dist = 60 + Math.random() * 90;
+          var destX = Math.cos(angle) * dist;
+          var destY = Math.sin(angle) * dist;
+
+          el.animate([
+            { transform: 'translate(0, 0) scale(0.6)', opacity: 1 },
+            { transform: 'translate(' + destX + 'px, ' + destY + 'px) scale(1.3)', opacity: 0 }
+          ], {
+            duration: 850 + Math.random() * 250,
+            easing: 'cubic-bezier(0.15, 0.9, 0.2, 1)'
+          }).onfinish = function() {
+            this.effect.target.remove();
+          };
+        }
+      }
+
+      // ==========================================
+      // SVG PATH PREPARATION & INTERSECTION OBSERVER
+      // ==========================================
+      document.querySelectorAll('.draw *').forEach(function(e) {
+        if (e.getAttribute && /^(path|circle|ellipse|rect)$/i.test(e.tagName)) {
+          e.setAttribute('pathLength', '1');
+        }
+      });
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+
+      document.querySelectorAll('.draw, .train-track').forEach(function(el) {
+        observer.observe(el);
+      });
+
+      // Reading scroll progress
+      function updateProg() {
+        var scrollable = root.scrollHeight - innerHeight;
+        if (scrollable > 0) {
+          progBar.style.width = ((scrollY / scrollable) * 100) + '%';
+        }
+      }
+      window.addEventListener('scroll', updateProg, { passive: true });
+      updateProg();
+
+      // ==========================================
+      // INTERACTIVE DOODLE TAP EVENTS
+      // ==========================================
+      var moleQuotes = [
+        'i wasn’t listening here. my bad, sir.',
+        '6.022 × 10²³ thank yous to you sir!',
+        'limiting reagent: finding who runs out first (me before test).',
+        'moles = given mass / molar mass (never forgetting this)'
+      ];
+      var moleIndex = 0;
+      var moleBtn = document.getElementById('mole-art');
+      if (moleBtn) {
+        moleBtn.onclick = function(e) {
+          playPaperRustle();
+          showToast(moleQuotes[moleIndex % moleQuotes.length]);
+          moleIndex++;
+          spawnBurst(e.clientX, e.clientY, ['6.022', '×10²³', 'mol', '✨'], 8);
+        };
+      }
+      var hintMole = document.getElementById('hint-mole');
+      if (hintMole) hintMole.onclick = function(e) { if(moleBtn) moleBtn.click(); };
+
+      var atomArt = document.getElementById('atom-art');
+      if (atomArt) {
+        atomArt.onclick = function(e) {
+          playPaperRustle();
+          showToast('angular nodes + radial nodes = 0 confusion now');
+          spawnBurst(e.clientX, e.clientY, ['e⁻', 'ψ²', 'ħ', '⚛️'], 8);
+        };
+      }
+      var hintAtom = document.getElementById('hint-atom');
+      if (hintAtom) hintAtom.onclick = function(e) { if(atomArt) atomArt.click(); };
+
+      var thermoArt = document.getElementById('thermo-art');
+      if (thermoArt) {
+        thermoArt.onclick = function(e) {
+          playPaperRustle();
+          showToast('ΔG < 0: this thank you is 100% spontaneous!');
+          spawnBurst(e.clientX, e.clientY, ['ΔH', 'ΔS', '🔥', 'cal'], 8);
+        };
+      }
+      var hintThermo = document.getElementById('hint-thermo');
+      if (hintThermo) hintThermo.onclick = function(e) { if(thermoArt) thermoArt.click(); };
+
+      var broArt = document.getElementById('bro-art');
+      if (broArt) {
+        broArt.onclick = function(e) {
+          playPaperRustle();
+          showToast('the equilibrium brothers: ended 11th on a high note!');
+          spawnBurst(e.clientX, e.clientY, ['⇌', 'Kp', 'Kc', 'pH'], 8);
+        };
+      }
+      var hintBro = document.getElementById('hint-bro');
+      if (hintBro) hintBro.onclick = function(e) { if(broArt) broArt.click(); };
+
+      var heartArt = document.getElementById('heart-art');
+      if (heartArt) {
+        heartArt.onclick = function(e) {
+          showToast('thank you for everything, ' + state.teacher + '!');
+          spawnBurst(e.clientX, e.clientY, ['❤️', '✨', '🙏', '💯', '🏆'], 20);
+        };
+      }
+      var hintHeart = document.getElementById('hint-heart');
+      if (hintHeart) hintHeart.onclick = function(e) { if(heartArt) heartArt.click(); };
+
+      // Sticky notes tap-to-reveal
+      document.querySelectorAll('.sticky-note').forEach(function(note) {
+        note.onclick = function() {
+          playPaperRustle();
+          this.classList.toggle('open');
+          showToast(this.classList.contains('open') ? 'opened scribble 📖' : 'folded back');
+        };
+      });
+
+      // ==========================================
+      // THEME & SOUND CONTROLS
+      // ==========================================
+      document.getElementById('btn-theme').onclick = function() {
+        playPaperRustle();
+        var nextTheme = state.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+        showToast(nextTheme === 'dark' ? '2 AM study night mode on' : 'notebook paper mode');
+      };
+
+      document.getElementById('btn-sound').onclick = function() {
+        state.sound = !state.sound;
+        localStorage.setItem('ty_sound', state.sound);
+        updateSoundBtn();
+        if (state.sound) {
+          playPaperRustle();
+          showToast('sound feedback on 🔊');
+        } else {
+          showToast('sound muted 🔇');
+        }
+      };
+
+      // ==========================================
+      // CUSTOMIZATION MODAL
+      // ==========================================
+      var modal = document.getElementById('custom-modal');
+      var btnEdit = document.getElementById('btn-edit');
+      var btnClose = document.getElementById('modal-x');
+      var btnSave = document.getElementById('btn-save-cust');
+
+      var inpTeacher = document.getElementById('inp-teacher');
+      var inpStudent = document.getElementById('inp-student');
+      var inpBatch = document.getElementById('inp-batch');
+      var inpSubject = document.getElementById('inp-subject');
+
+      function openModal() {
+        playPaperRustle();
+        inpTeacher.value = state.teacher;
+        inpStudent.value = state.student;
+        inpBatch.value = state.batch;
+        inpSubject.value = state.subject;
+        modal.classList.add('open');
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+      }
+
+      btnEdit.onclick = openModal;
+      btnClose.onclick = closeModal;
+      modal.onclick = function(e) {
+        if (e.target === modal) closeModal();
+      };
+
+      btnSave.onclick = function() {
+        playChime();
+        state.teacher = inpTeacher.value.trim() || 'Rahul Dudi Sir';
+        state.student = inpStudent.value.trim() || 'aadarsh jain';
+        state.batch = inpBatch.value.trim() || 'arjuna jee 1.0';
+        state.subject = inpSubject.value.trim() || 'physical chemistry';
+
+        localStorage.setItem('ty_teacher', state.teacher);
+        localStorage.setItem('ty_student', state.student);
+        localStorage.setItem('ty_batch', state.batch);
+        localStorage.setItem('ty_subject', state.subject);
+
+        renderData();
+        closeModal();
+        showToast('updated details! ✨');
+      };
+
+      // ==========================================
+      // INITIAL BOOTSTRAP
+      // ==========================================
+      renderData();
+      applyTheme(state.theme);
+      updateSoundBtn();
+
+      // Keyboard accessible escape for modal
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+
+    })();
+  </script>
+</body>
+</html>
