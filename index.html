@@ -422,9 +422,10 @@ h2 {
       <h2>structure of atom</h2>
       <p class="say">full of formulas and new things in every class.</p>
       <div class="quote">"psi, psi square, quantum numbers — you turned abstract imagination into crystal clear graphs."</div>
+      <span class="note" id="note-atom">tap the nucleus</span>
     </div>
     <div>
-      <svg class="art draw" viewBox="0 0 260 90" aria-label="Doodle of solid, liquid and gas boxes">
+      <svg class="art draw tap" id="states" viewBox="0 0 260 90" aria-label="Doodle of solid, liquid and gas boxes">
         <g filter="url(#wob)" fill="none">
           <rect x="8" y="10" width="70" height="70" rx="4"/>
           <rect x="95" y="10" width="70" height="70" rx="4"/>
@@ -443,6 +444,7 @@ h2 {
       <h2>states of matter</h2>
       <p class="say">this one was easy.</p>
       <div class="quote">"pv = nrt to van der waals equation — smooth sailing."</div>
+      <span class="note" id="note-states">tap the boxes</span>
     </div>
   </div>
 </section>
@@ -463,9 +465,10 @@ h2 {
       <h2>thermodynamics</h2>
       <p class="say">the longest chapter. but it felt easy, because of you sir.</p>
       <div class="quote">"everyone online said 'thermo will break you'. but because of you sir, it actually felt like solving a logical game."</div>
+      <span class="note" id="note-thermo">tap the flask</span>
     </div>
     <div>
-      <div class="train" id="trn">
+      <div class="train tap" id="trn">
         <svg class="art" viewBox="0 0 360 120" style="width:min(340px,92vw)" aria-label="Doodle of a train">
           <g filter="url(#wob)">
             <path d="M0 110 H360" fill="none"/>
@@ -486,6 +489,7 @@ h2 {
       <h2>redox</h2>
       <p class="say">smooth like a train.</p>
       <div class="quote">"n-factor, balancing, titration — smooth like a train on express tracks."</div>
+      <span class="note" id="note-train">tap the train</span>
     </div>
   </div>
 </section>
@@ -508,7 +512,7 @@ h2 {
     </g>
   </svg>
   <h2>chemical and ionic equilibrium</h2>
-  <p class="say">the last two brothers. 7 lectures that ended this year’s journey.</p>
+  <p class="say">the last two brothers. 14 lectures that ended this year’s journey.</p>
   <div class="quote">"ph of weak acid + common ion effect... pehle darr lagta tha, ab options dekhte hi logic lagta hai."</div>
   <span class="note" id="note-bro">tap the brothers</span>
 </section>
@@ -556,7 +560,7 @@ h2 {
   <p class="say" style="margin-top: 10px;">we walked in scared of formulas. we are walking out loving the logic.</p>
   <p class="say" style="margin-top: 10px; color: var(--pink);">i hope you take our physical chemistry in lakshya too.</p>
   <p class="name pink">aadarsh jain</p>
-  <p class="small">tap the heart</p>
+  <span class="note" id="note-heart">tap the heart</span>
 </section>
 
 <div id="toast" role="status"></div>
@@ -629,35 +633,43 @@ h2 {
     playTap();
     say('i wasn’t listening here. my bad, sir.');
   }
-  var moleEl = $('#mole');
-  if (moleEl) moleEl.onclick = tapMole;
-  var noteMole = $('#note-mole');
-  if (noteMole) noteMole.onclick = tapMole;
+  var moleEl = $('#mole'); if (moleEl) moleEl.onclick = tapMole;
+  var noteMole = $('#note-mole'); if (noteMole) noteMole.onclick = tapMole;
 
-  var atomEl = $('#atom');
-  if (atomEl) {
-    atomEl.onclick = function(){
-      playTap();
-      say('full of formulas and new things in every class.');
-    };
+  function tapAtom() {
+    playTap();
+    say('full of formulas and new things in every class.');
   }
+  var atomEl = $('#atom'); if (atomEl) atomEl.onclick = tapAtom;
+  var noteAtom = $('#note-atom'); if (noteAtom) noteAtom.onclick = tapAtom;
 
-  var thermoEl = $('#thermo');
-  if (thermoEl) {
-    thermoEl.onclick = function(){
-      playTap();
-      say('the longest chapter. but it felt easy, because of you sir.');
-    };
+  function tapStates() {
+    playTap();
+    say('this one was easy. pv = nrt to van der waals.');
   }
+  var statesEl = $('#states'); if (statesEl) statesEl.onclick = tapStates;
+  var noteStates = $('#note-states'); if (noteStates) noteStates.onclick = tapStates;
+
+  function tapThermo() {
+    playTap();
+    say('the longest chapter. but it felt easy, because of you sir.');
+  }
+  var thermoEl = $('#thermo'); if (thermoEl) thermoEl.onclick = tapThermo;
+  var noteThermo = $('#note-thermo'); if (noteThermo) noteThermo.onclick = tapThermo;
+
+  function tapTrain() {
+    playTap();
+    say('smooth like a train on express tracks.');
+  }
+  var trainEl = $('#trn'); if (trainEl) trainEl.onclick = tapTrain;
+  var noteTrain = $('#note-train'); if (noteTrain) noteTrain.onclick = tapTrain;
 
   function tapBro() {
     playTap();
-    say('the last two brothers. 7 lectures that ended the journey.');
+    say('the last two brothers. 14 lectures that ended the journey.');
   }
-  var broEl = $('#bro');
-  if (broEl) broEl.onclick = tapBro;
-  var noteBro = $('#note-bro');
-  if (noteBro) noteBro.onclick = tapBro;
+  var broEl = $('#bro'); if (broEl) broEl.onclick = tapBro;
+  var noteBro = $('#note-bro'); if (noteBro) noteBro.onclick = tapBro;
 
   // Interactive Sticky Notes
   document.querySelectorAll('.sticky-note').forEach(function(note){
@@ -668,16 +680,18 @@ h2 {
     };
   });
 
-  $('#hrt').onclick = function(e){
+  function tapHeart(e) {
     playTap();
     say('thank you, sir.');
     if (rm) return;
+    var x = e && e.clientX ? e.clientX : window.innerWidth / 2;
+    var y = e && e.clientY ? e.clientY : window.innerHeight / 2;
     for (var i = 0; i < 12; i++) {
       var p = document.createElement('span');
       p.className = 'spk';
       p.textContent = i % 2 ? '+' : '/';
-      p.style.left = e.clientX + 'px';
-      p.style.top = e.clientY + 'px';
+      p.style.left = x + 'px';
+      p.style.top = y + 'px';
       document.body.appendChild(p);
       var a = i / 12 * 6.28;
       var d = 50 + Math.random() * 60;
@@ -688,7 +702,9 @@ h2 {
         this.effect.target.remove();
       };
     }
-  };
+  }
+  var hrtEl = $('#hrt'); if (hrtEl) hrtEl.onclick = tapHeart;
+  var noteHeart = $('#note-heart'); if (noteHeart) noteHeart.onclick = tapHeart;
 })();
 </script>
 </body>
